@@ -17,7 +17,7 @@ export const Header = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container">
         <NavLink className="navbar-brand text-dark fw-bold" to="/">
-          CozyLume
+          Luminance
         </NavLink>
 
         <button

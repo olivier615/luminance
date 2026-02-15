@@ -3,7 +3,8 @@ import AdminLayout from '../layout/AdminLayout';
 
 import ProtectedRoute from '../components/ProtectedRoute'
 
-import { Home } from '../pages/Home'
+// import { Home } from '../pages/Home'
+import { Index } from '../pages/Index'
 import { Products } from '../pages/Products'
 import { Product } from '../pages/Product'
 import { Cart } from '../pages/Cart'
@@ -22,7 +23,7 @@ const routes = [
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Index />
       },
       {
         path: 'products',

@@ -43,3 +43,16 @@ h1, h2, h3, h4, h5 {
   filter: grayscale(100%) brightness(0.8);
   transition: filter 0.5s ease;
 }
+
+:root {
+  /* 修改導覽箭頭顏色與大小 */
+  // --swiper-navigation-color: #1e293b; /* 深色 */
+  // --swiper-navigation-size: 24px;    /* 縮小箭頭 */
+
+  /* 修改分頁小圓點顏色 */
+  --swiper-pagination-color: #5FB8AD;
+  --swiper-pagination-bullet-inactive-color: #CFE8E5;
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+}

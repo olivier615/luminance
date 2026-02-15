@@ -45,7 +45,11 @@
 .bg_img_fill {
   background-size: cover;
   background-position: center;
-  padding: 300px 0;
+  padding: 200px 0;
+}
+
+.sec-gap {
+  padding: 120px 0;
 }
 
 .mb-300 {
@@ -55,18 +59,35 @@
 
 .sec_2_img_1 {
   background-image: url('https://images.unsplash.com/photo-1598017258901-73b97a15fdbd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8');
+  background-size: cover;
+  background-position: center;
 }
 
 .sec_2_img_2 {
   background-image: url('https://images.unsplash.com/photo-1745359327678-d1204fa77b2e?q=80&w=1113&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
 }
 
 .sec_2_img_3 {
-  background-image: url('https://images.unsplash.com/photo-1755415542310-c9460ebe5b84?q=80&w=1475&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  // background-image: url('https://images.unsplash.com/photo-1699568861430-2c7bb074455d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)),
+    url('https://images.unsplash.com/photo-1699568861430-2c7bb074455d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 }
 
 .sec_2_img_4 {
-  background-image: url('https://images.unsplash.com/photo-1615591990516-8af7566795a7?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  // background-image: url('https://images.unsplash.com/photo-1715756324249-0456e325831d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-color: #000000;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: luminosity;
+  background-image:
+    linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)),
+    url('https://images.unsplash.com/photo-1715756324249-0456e325831d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  
 }
 
 .sec_2_1 {
@@ -93,5 +114,107 @@
   background-image:
     // linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)),
     url('https://images.unsplash.com/photo-1641734609301-049ac78ad47d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    // url('https://images.unsplash.com/photo-1675972486643-18758f47bbf6?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  // url('https://images.unsplash.com/photo-1675972486643-18758f47bbf6?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+
+// ------------------------
+.banner_view {
+  height: 100vh;
+}
+
+.banner_bg {
+  background-image: url('https://images.unsplash.com/photo-1614447912314-e2976f03f61a?q=80&w=1470&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+.index_view_title {
+  font-size: clamp(42px, 8vw, 80px);
+  font-weight: 600;
+  color: #9ED6CF;
+  line-height: 1.1;
+}
+
+.mt_title_card {
+  margin-top: 40px;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+  transition: filter 2.0s;
+}
+
+.grayscale_card:hover .grayscale {
+  filter: grayscale(50%);
+  transition: filter 2.0s;
+}
+
+
+@media (min-width : 576px) {
+  .index-view-img {
+    padding: 160px 20px 80px 20px;
+    border-radius: 24px;
+  }
+
+  .mt_title_card {
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .index-view-img {
+    padding: 200px 24px 100px 24px;
+    border-radius: 28px;
+  }
+
+  .mt_title_card {
+    margin-top: 120px;
+  }
+}
+
+@media (min-width: 992px) {
+  .index-view-img {
+    padding: 260px 24px 120px 24px;
+    border-radius: 32px;
+  }
+
+  .mt_title_card {
+    margin-top: 160px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .index-view-img {
+    padding: 300px 24px 140px 24px;
+    border-radius: 36px;
+  }
+
+  .mt_title_card {
+    margin-top: 200px;
+  }
+}
+
+/* Swiper Container 外部間距 */
+.product-swiper {
+  padding-bottom: 40px;
+}
+
+/* 商品圖片容器 */
+.img-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* 強制 1:1 */
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.MoodBox {
+  height: 300px;
 }
