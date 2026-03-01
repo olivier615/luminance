@@ -7,15 +7,17 @@ export const ServiceAssurance = () => {
 
   return (
     <section className="service-assurance-section py-5 border-bottom">
-      <div className="container ">
+      <div className="container">
         <div className="row">
           {services.map((s, idx) => (
-            <div key={idx} className="col-12 col-md-4 text-center">
-              <div className="my-3">
-                <i className={`bi fs-3 text-dark ${s.icon}`}></i>
+            <div key={idx} className="col-12 mb-3 mb-md-0 col-md-4 d-flex align-items-center gap-3">
+              <div className="">
+                <i className={`bi fs-3 text-primary ${s.icon}`}></i>
               </div>
-              <h5 className="fw-bold text-dark">{s.title}</h5>
-              <p className="text-muted small px-lg-4">{s.desc}</p>
+              <div className="d-flex flex-column gap-1">
+                <h5 className="fw-bold text-dark mb-0">{s.title}</h5>
+                <p className="text-muted small mb-0">{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>

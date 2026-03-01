@@ -5,6 +5,7 @@ import { apiGetProducts } from "../../apis/product"
 import { ProductModal } from '../../components/admin/ProductModal'
 import { ConfirmDeleteModel } from '../../components/admin/ConfirmDeleteModel'
 import { PaginationList } from '../../components/PaginationList'
+import { BorderSpinner } from '../../components/Spinner'
 import type {
   ProductData,
   TPagination,
@@ -16,6 +17,7 @@ export const AdminProducts = () => {
   const { showSuccess, showError } = useMessage()
   const productModalRef = useRef<bootstrap.Modal | null>(null)
   const [products, setProducts] = useState<ProductData[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const [productEditState, setProductEditState] = useState<'new' | 'edit'>('new')
   const [tempProduct, setTempProduct] = useState<ProductData | null>(null)
   const [pagination, setPagination] = useState<TPagination>({
@@ -26,6 +28,7 @@ export const AdminProducts = () => {
     category: ''
   })
   const getProducts = async (page: number = pagination.current_page, category: string = '') => {
+    setIsLoading(true)
     try {
       const response = await apiGetProducts({ page, category })
       setProducts(response.data.products)
@@ -38,6 +41,8 @@ export const AdminProducts = () => {
       } else {
         showError('發生未知錯誤')
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -72,7 +77,6 @@ export const AdminProducts = () => {
       "$1"
     )
     axios.defaults.headers.common.Authorization = token;
-    // checkLoginStatus()
     getProducts()
     const el = document.getElementById('productModal')
     if (!el) return
@@ -96,68 +100,80 @@ export const AdminProducts = () => {
     <div className="container">
       <div className="row mt-5">
         <div className="col-md-12">
-          <h2>產品列表</h2>
-          <div className="text-end">
-            <button onClick={() => openProductModal('new', null)} type="button" className="btn btn-primary ">新增產品</button>
-          </div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>產品名稱</th>
-                <th>分類</th>
-                <th>原價</th>
-                <th>售價</th>
-                <th>到府安裝</th>
-                <th>是否啟用</th>
-                <th>編輯</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products && products.length > 0 ? (
-                products.map((product) => (
-                  <tr key={product.id}>
-                    <td>{product.title}</td>
-                    <td>{product.category}</td>
-                    <td>{product.origin_price}</td>
-                    <td>{product.price}</td>
-                    <td className={`${product.installation ? '' : 'text-danger'}`}>
-                      {product.installation
-                        ? installationLabelMap[product.installation]
-                        : '未啟用'}
-                    </td>
-                    <td className={`${product.is_enabled ? '' : 'text-danger'}`}>
-                      {product.is_enabled ? "啟用" : "未啟用"}
-                    </td>
-                    <td>
-                      <div className="btn-group">
-                        <button
-                          type="button" className="btn btn-outline-primary btn-sm"
-                          onClick={() => openProductModal('edit', product)}
-                        >
-                          編輯
-                        </button>
-                        <ConfirmDeleteModel
-                          productId={product.id}
-                          productTitle={product.title}
-                          onDeleted={getProducts}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5}>尚無產品資料</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          <p className="fs-3 text-center">產品列表</p>
+          {
+            isLoading ?
+              ((<BorderSpinner />))
+              :
+              (<>
+                <div className="text-end">
+                  <button onClick={() => openProductModal('new', null)} type="button" className="btn btn-primary ">新增產品</button>
+                </div>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>產品名稱</th>
+                      <th>分類</th>
+                      <th>原價</th>
+                      <th>售價</th>
+                      <th>到府安裝</th>
+                      <th>是否啟用</th>
+                      <th>編輯</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products && products.length > 0 ? (
+                      products.map((product) => (
+                        <tr key={product.id}>
+                          <td>{product.title}</td>
+                          <td>{product.category}</td>
+                          <td>{product.origin_price}</td>
+                          <td>{product.price}</td>
+                          <td className={`${product.installation ? '' : 'text-danger'}`}>
+                            {product.installation
+                              ? installationLabelMap[product.installation]
+                              : '未啟用'}
+                          </td>
+                          <td className={`${product.is_enabled ? '' : 'text-danger'}`}>
+                            {product.is_enabled ? "啟用" : "未啟用"}
+                          </td>
+                          <td>
+                            <div className="btn-group">
+                              <button
+                                type="button" className="btn btn-outline-primary btn-sm"
+                                onClick={() => openProductModal('edit', product)}
+                              >
+                                編輯
+                              </button>
+                              <ConfirmDeleteModel
+                                productId={product.id}
+                                productTitle={product.title}
+                                onDeleted={getProducts}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5}>尚無產品資料</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </>)
+          }
         </div>
       </div>
-      <PaginationList
-        pagination={pagination}
-        onChangePage={onChangePage}
-      />
+      {
+        isLoading ?
+          ('')
+          :
+          (<PaginationList
+            pagination={pagination}
+            onChangePage={onChangePage}
+          />)
+      }
       <ProductModal
         closeModal={closeModal}
         productEditState={productEditState}

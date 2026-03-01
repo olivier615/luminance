@@ -15,7 +15,7 @@ export const Footer = () => {
             </p>
           </div>
           <div className="col-12 col-md-4 mt-5 mt-md-0">
-            <div className="d-flex gap-5 justify-content-between">
+            <div className="d-flex flex-column flex-lg-row gap-5 justify-content-between">
               <div className="d-flex flex-column gap-3 fw-bold">
                 <Link to="/" className="text-decoration-none">購物說明</Link>
                 <Link to="/" className="text-decoration-none">退換貨政策</Link>

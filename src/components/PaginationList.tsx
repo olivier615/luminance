@@ -8,7 +8,7 @@ type PaginationListProps = {
 export const PaginationList = ({ pagination, onChangePage }: PaginationListProps) => {
   return (
     <nav aria-label="Page navigation">
-      <ul className="pagination justify-content-center">
+      <ul className="pagination justify-content-center my-5">
         <li className={`page-item ${pagination.current_page === 1 ? 'disabled' : ''}`}>
           <button 
             onClick={() => onChangePage(pagination.current_page - 1)}

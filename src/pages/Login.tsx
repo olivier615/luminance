@@ -31,12 +31,16 @@ export const Login = () => {
   }
 
   return (<>
-  <div className="container">
+  <div className="container my-5">
     <div className="row">
       <div className="col-6">
         <img className="img-fluid w-100 rounded" src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fE5lb24lMjBzaWdufGVufDB8fDB8fHww" alt="sweet home" />
       </div>
       <div className="col-6">
+        <div className="text-center my-3">
+          <p className="text-primary fs-5 fw-bold mb-3">Backstage</p>
+          <p className="fw-bold text-dark fs-3 mb-5">後台登入</p>
+        </div>
         <form
           id="form"
           className="form-signin"

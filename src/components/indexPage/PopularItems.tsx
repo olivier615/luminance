@@ -68,8 +68,6 @@ export const PopularItems = () => {
               }}
               navigation
               pagination={{ clickable: true }}
-              onSlideChange={() => console.log('slide change')}
-              onSwiper={(swiper) => console.log(swiper)}
               modules={[Pagination]}
               className="product-swiper"
             >
@@ -77,7 +75,7 @@ export const PopularItems = () => {
                 products.map(product => {
                   return (
                     <SwiperSlide key={product.id}>
-                        <Link className="text-decoration-none" to={`/product/${product.id}`}>
+                      <Link className="text-decoration-none" to={`/product/${product.id}`}>
                         <div className="flex flex-col group cursor-pointer">
                           <div className="img-container mb-4">
                             <img className="rounded-3" src={product.imageUrl} alt={product.title} />
@@ -90,8 +88,8 @@ export const PopularItems = () => {
                             {product.description}
                           </span>
                         </div>
-                    </Link>
-                      </SwiperSlide>
+                      </Link>
+                    </SwiperSlide>
                   )
                 })
               }

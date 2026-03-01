@@ -6,18 +6,17 @@ import { selectCart } from '../slices/cartSlice'
 import { useNavigate } from "react-router"
 import type { CartData } from "../types/cart"
 import {
-  // apiPublicGetCartData,
   apiPublicUpdateCartItem,
   apiPublicRemoveCartItem,
   apiPublicRemoveAllItem
 } from "../apis/cart"
 import { QuantityControl } from "../components/QuantityControl"
 import { BorderSpinner } from '../components/Spinner'
-import { CouponCard } from '../components/CouponCard'
 import { TotalPriceCard } from '../components/TotalPriceCard'
 import { useMessage } from "../hooks/useMessage"
 import { getAsyncCarts } from '../slices/cartSlice'
 import { useAppDispatch } from '../store/hooks'
+import { MiniCartTable } from '../components/MiniCartTable'
 
 export const Cart = () => {
   const dispatch = useAppDispatch()
@@ -91,22 +90,28 @@ export const Cart = () => {
   return (
     <>
       <div className="container">
-        <p className="text-center fs-3">
+        <div className="text-center my-5">
           {cartData.carts.length === 0
-            ? '購物車還是空的，快去看看吧 : )'
-            : '購物車'
+            ?
+            <p className="text-primary fs-5 fw-bold mb-3">購物車還是空的，快去看看吧 ：）</p>
+            :
+            <>
+              <p className="text-primary fs-5 fw-bold mb-3">Your Cart</p>
+              <p className="fw-bold text-dark fs-3 mb-5">購物車</p>
+            </>
           }
-        </p>
+        </div>
         {
           isLoading ? (
             <BorderSpinner />
           ) : (
             <>
               <div className="row">
-                <div className="col-md-9 col-12">
-                  <table className="table align-middle text-center">
+                <div className="col-lg-9 col-12">
+                  <table className="d-none d-md-table table align-middle text-center">
                     <thead>
                       <tr>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">商品名稱</th>
                         <th scope="col">分類</th>
@@ -121,6 +126,11 @@ export const Cart = () => {
                         return (
                           <tr key={index}>
                             <td>{index + 1}</td>
+                            <td className="d-flex justify-content-center">
+                              <div className="cart-img-container">
+                                <img className="rounded-3" src={item.product.imageUrl} alt={item.product.title} />
+                              </div>
+                            </td>
                             <td>
                               <Link to={`/product/${item.product.id}`}>
                                 {item.product.title}
@@ -131,6 +141,7 @@ export const Cart = () => {
                             <td>
                               <QuantityControl
                                 waiting={waiting}
+                                justifyStart={false}
                                 quantity={item.qty}
                                 onIncrease={() => updateItemQty(item.id, item.qty + 1)}
                                 onDecrease={() => updateItemQty(item.id, Math.max(1, item.qty - 1))}
@@ -148,11 +159,20 @@ export const Cart = () => {
                       })}
                     </tbody>
                   </table>
+                  <div className="d-block d-md-none">
+                    <MiniCartTable
+                      cartData={cartData}
+                      waiting={waiting}
+                      setWaiting={setWaiting}
+                      canChangeOrder={true}
+                    />
+
+                  </div>
                   {
                     cartData.carts.length !== 0 && (
                       <button
                         type="button"
-                        className="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-danger my-3"
                         onClick={removeAllItem}
                       >
                         移除所有商品
@@ -161,16 +181,16 @@ export const Cart = () => {
                   }
 
                 </div>
-                <div className="col-md-3 col-12">
-                  <CouponCard />
+                <div className="col-lg-3 col-12">
+                  {/* <CouponCard /> */}
                   <TotalPriceCard />
                   <button
                     type="button"
                     disabled={cartData.carts.length === 0}
-                    className="btn btn-outline-primary mt-3 w-100"
+                    className="btn btn-outline-primary mt-3 w-100 mb-5"
                     onClick={() => navigate('/create_order')}
                   >
-                    送出訂單
+                    開始結帳
                   </button>
                 </div>
               </div>

@@ -36,28 +36,31 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   }
 
   return (
-    <div className="card mb-3">
-      <img src={product.imageUrl} className="card-img-top" alt={product.title} />
-      <div className="card-body">
-        <h5 className="card-title">
-          {product.title}
-          <span className="badge bg-primary ms-2">{product.category}</span>
-        </h5>
-        <p className="card-text">{product.content}</p>
-        <div className="d-flex justify-content-end">
-          <div className="btn-group">
-            <Link to={`/product/${product.id}`} className="btn btn-outline-primary">查看商品細節</Link>
-            {
-              waitingId === product.id ? (
-                <GrowingSpinnerButton />
-              ) : (
-                <button type="button" className="btn btn-outline-primary"
-                  onClick={() => addToCart(product.id, 1)}>加入購物車
-                </button>
-              )
-            }
+    <div className="mb-4">
+      <Link className="text-decoration-none" to={`/product/${product.id}`}>
+        <div className="flex flex-col group cursor-pointer">
+          <div className="img-container mb-4">
+            <img className="rounded-3" src={product.imageUrl} alt={product.title} />
           </div>
+          <div className="d-flex justify-content-between">
+            <h5 className="">{product.title}</h5>
+            <p className="fs-5 fw-bold mb-0">${product.price}</p>
+          </div>
+          <span className="text-muted small ">
+            {product.description}
+          </span>
         </div>
+      </Link>
+      <div className="d-flex justify-content-end mt-2">
+        {
+          waitingId === product.id ? (
+            <GrowingSpinnerButton />
+          ) : (
+            <button type="button" className="btn btn-outline-primary"
+              onClick={() => addToCart(product.id, 1)}>加入購物車
+            </button>
+          )
+        }
       </div>
     </div>
   )

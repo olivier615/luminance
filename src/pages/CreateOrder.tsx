@@ -1,23 +1,25 @@
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react"
-import { Link } from "react-router"
 import { useNavigate } from "react-router"
-
 import { useMessage } from "../hooks/useMessage"
 import type { CartData } from "../types/cart"
 import { apiPublicPostOrder } from '../apis/order'
 import { apiPublicGetCartData } from "../apis/cart"
-import { BorderSpinner } from '../components/Spinner'
-import { CouponCard } from '../components/CouponCard'
+// import { CouponCard } from '../components/CouponCard'
 import { TotalPriceCard } from '../components/TotalPriceCard'
 import type { orderData } from '../types/order'
+import { MiniCartTable } from '../components/MiniCartTable'
+import { useAppDispatch } from '../store/hooks'
+import { getAsyncCarts } from '../slices/cartSlice'
 
 export const CreateOrder = () => {
+  const dispatch = useAppDispatch()
   const { showSuccess, showError } = useMessage()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<orderData>({ mode: 'onChange' })
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [_, setIsLoading] = useState<boolean>(true)
+  const [waiting, setWaiting] = useState<boolean>(false)
   const [cartData, setCartData] = useState<CartData>({
     carts: [],
     final_total: 0,
@@ -41,8 +43,10 @@ export const CreateOrder = () => {
   const onSubmit = async (data: orderData) => {
     try {
       const response = await apiPublicPostOrder(data)
-      showSuccess(response?.data.message ?? "訂單已成立!")
-      navigate('/')
+      showSuccess(response?.data.message ?? "訂單已成立！")
+      dispatch(getAsyncCarts())
+      // api 會自動清空購物車，要記得把 store 的 cart slice 也更新一次
+      navigate(`/payment/${response.data.orderId}`)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data?.message || '無法完成訂單，請稍後再試'
@@ -57,11 +61,15 @@ export const CreateOrder = () => {
     getCartData()
   }, [])
 
-
   return (<>
-    <div className="container">
+    <div className="container my-5">
+      <div className="text-center my-5">
+        <p className="text-primary fs-5 fw-bold mb-3">Place an Order</p>
+        <p className="fw-bold text-dark fs-3 mb-5">建立訂單</p>
+      </div>
       <div className="row">
-        <div className="col-9">
+        <div className="col-12 col-md-6">
+          <p className="fw-bold text-dark fs-5 text-center mb-3">收件人資料</p>
           <form
             id="form"
             className="form-signin"
@@ -147,54 +155,20 @@ export const CreateOrder = () => {
               className="btn btn-lg btn-primary w-100 mt-3"
               type="submit"
             >
-              送出訂單
+              確認訂單
             </button>
           </form>
-          {
-            isLoading ? (
-              <BorderSpinner />
-            ) : (
-              <>
-                <div className=" mt-5">
-                  <p className="text-center fs-3">訂單詳情</p>
-                  <table className="table align-middle text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col"></th>
-                        <th scope="col">商品名稱</th>
-                        <th scope="col">分類</th>
-                        <th scope="col">單價</th>
-                        <th scope="col">購買數量</th>
-                        <th scope="col">金額</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cartData.carts.map((item, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>
-                              <Link to={`/product/${item.product.id}`}>
-                                {item.product.title}
-                              </Link>
-                            </td>
-                            <td>{item.product.category}</td>
-                            <td>{`${item.product.price} / ${item.product.unit}`}</td>
-                            <td>{item.qty}</td>
-                            <td>{item.total}</td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </>
-            )
-          }
         </div>
-        <div className="col-3">
-          <CouponCard />
+        <div className="col-12 offset-0 offset-lg-1 col-md-6 col-lg-5 mt-5 mt-md-0">
+          {/* <CouponCard /> */}
           <TotalPriceCard />
+          <p className="fw-bold text-dark fs-5 text-center my-3">訂單內容</p>
+          <MiniCartTable
+            cartData={cartData}
+            waiting={waiting}
+            setWaiting={setWaiting}
+            canChangeOrder={false}
+          />
         </div>
       </div>
     </div>

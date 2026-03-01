@@ -6,7 +6,7 @@ export const TotalPriceCard = () => {
   const cartQty = useSelector(selectCartQty)
   const { total, final_total } = cart
   return (<div className="card py-4 px-3">
-    <p className="mb-3">購物車金額</p>
+    <p className="mb-3 ">購物車金額</p>
     <div className="d-flex justify-content-between">
       <p>小計 <small>（{cartQty} 樣商品）</small></p>
       <p>{total}</p>

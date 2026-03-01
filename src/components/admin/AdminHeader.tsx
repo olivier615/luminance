@@ -5,7 +5,7 @@ export const AdminHeader = () => {
     <nav className="navbar navbar-expand-lg navbar-light border-bottom">
       <div className="container">
         <NavLink className="navbar-brand fw-bold" to="/">
-          CozyLume
+          Luminance
         </NavLink>
 
         <button
@@ -30,7 +30,7 @@ export const AdminHeader = () => {
                 產品列表
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink
                 to="/admin/coupons"
                 className={({ isActive }) =>
@@ -39,7 +39,7 @@ export const AdminHeader = () => {
               >
                 折價券列表
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink
                 to="/admin/orders"

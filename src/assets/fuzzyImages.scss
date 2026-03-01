@@ -1,0 +1,75 @@
+/* 容器層：背景使用 #F5F5F3 */
+.film-strip-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #1A1A1A;
+  padding: 8px 0;
+  display: flex;
+}
+
+/* 捲動軌道：必須是 max-content 確保不換行 */
+.film-track {
+  display: flex;
+  /* gap 必須固定，否則計算位移會出錯 */
+  gap: 8px;
+  width: max-content;
+  /* 確保動畫是線性且無限循環 */
+  animation: scroll-infinite 60s linear infinite;
+}
+
+/* 核心：位移到 -50% 代表第一組圖剛好跑完，瞬間跳回 0% 達成無縫 */
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* 這裡使用 -50% 是因為我們在 React 渲染了兩組重複的陣列 */
+    transform: translateX(-50%);
+  }
+}
+
+/* 影像項目：維持 16:9 */
+.film-item {
+  height: 80px;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  /* 防止圖片被擠壓 */
+  overflow: hidden;
+}
+
+.film-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 呼吸感濾鏡效果 */
+.grayscale {
+  filter: grayscale(100%);
+  transition: filter 2.5s ease-in-out;
+}
+
+.ungrayscale {
+  filter: grayscale(40%);
+  transition: filter 2.5s ease-in-out;
+}
+
+@media (min-width : 576px) {
+  .film-item {
+    height: 120px;
+  }
+}
+
+@media (min-width : 768px) {
+  .film-item {
+    height: 160px;
+  }
+}
+
+@media (min-width : 992px) {
+  .film-item {
+    height: 200px;
+  }
+}

@@ -14,7 +14,7 @@ export const Header = () => {
   }, [])
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <nav className="navbar navbar-expand-lg navbar-light border-bottom">
       <div className="container">
         <NavLink className="navbar-brand text-dark fw-bold" to="/">
           Luminance
@@ -38,6 +38,16 @@ export const Header = () => {
                 }
               >
                 首頁
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "text-primary" : ""} text-center`
+                }
+              >
+                關於我們
               </NavLink>
             </li>
             <li className="nav-item">

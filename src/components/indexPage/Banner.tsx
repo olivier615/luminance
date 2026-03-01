@@ -1,4 +1,10 @@
-export const Banner = () => {
+import { Link } from "react-router"
+
+type BannerProps = {
+  onScrollToStyle: () => void
+}
+
+export const Banner = ({ onScrollToStyle }: BannerProps) => {
   return (
     <>
       <section className="banner_view banner_bg w-100 mt-0">
@@ -16,10 +22,14 @@ export const Banner = () => {
                   <p className="mt-3">每一盞燈具都是對生活的溫柔註解。<br />精選極簡美學設計，為你的居家空間構築光影與靈感的交界。</p>
                 </div>
                 <div className="d-flex gap-3 mt-3">
-                  <button type="button" className="btn btn-primary w-100">
+                  <Link to={'/products'} className="btn btn-primary w-100">
                     開始選購
-                  </button>
-                  <button type="button" className="btn btn-secondary w-100">
+                  </Link>
+                  <button
+                    type="button"
+                    className="btn btn-secondary w-100"
+                    onClick={onScrollToStyle}
+                  >
                     風格導覽
                   </button>
                 </div>

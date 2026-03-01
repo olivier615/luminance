@@ -3,7 +3,6 @@ import AdminLayout from '../layout/AdminLayout';
 
 import ProtectedRoute from '../components/ProtectedRoute'
 
-// import { Home } from '../pages/Home'
 import { Index } from '../pages/Index'
 import { Products } from '../pages/Products'
 import { Product } from '../pages/Product'
@@ -12,9 +11,11 @@ import { NotFound } from '../pages/NotFound'
 import { Login } from '../pages/Login'
 import { AdminProducts } from '../pages/admin/AdminProducts'
 import { AdminOrders } from '../pages/admin/AdminOrders'
-import { AdminCoupons } from '../pages/admin/AdminCoupons'
 import { CreateOrder } from '../pages/CreateOrder'
 import { ConfirmOrder } from '../pages/ConfirmOrder'
+import { Payment } from '../pages/Payment'
+import { Article } from '../pages/Article'
+import { AboutUs } from '../pages/AboutUs'
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
       {
         index: true,
         element: <Index />
+      },
+      {
+        path: 'about',
+        element: <AboutUs />
       },
       {
         path: 'products',
@@ -44,6 +49,14 @@ const routes = [
       {
         path: 'confirm_order',
         element: <ConfirmOrder />
+      },
+      {
+        path: 'payment/:id',
+        element: <Payment />
+      },
+      {
+        path: 'article/:id',
+        element: <Article />
       },
       {
         path: 'login',
@@ -70,10 +83,6 @@ const routes = [
       {
         path: 'orders',
         element: <AdminOrders />
-      },
-      {
-        path: 'coupons',
-        element: <AdminCoupons />
       }
     ]
   }
