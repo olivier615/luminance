@@ -32,7 +32,7 @@ export const PopularItems = () => {
     }
   }
   useEffect(() => {
-    getProducts()
+    getProducts() // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

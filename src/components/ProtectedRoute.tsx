@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
       try {
         await apiCheckLoginStatus()
         setIsAuth(true)
-      } catch (error) {
+      } catch {
         setIsAuth(false)
       } finally {
         setLoading(false)

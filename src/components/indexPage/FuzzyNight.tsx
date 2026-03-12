@@ -1,11 +1,20 @@
 import { useState, useEffect, useMemo } from 'react'
 import { fuzzyImages } from '../../assets/content/fuzzyImage'
 
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+};
+
 export const FuzzyNight = () => {
   // 1. 準備原始隨機陣列
   const originalImages = useMemo(() => {
-    return [...fuzzyImages].sort(() => Math.random() - 0.5)
-  }, [])
+    return shuffleArray(fuzzyImages);
+  }, []);
 
   // 2. 為了無縫捲動，渲染兩組一樣的內容
   const combinedImages = [...originalImages, ...originalImages]

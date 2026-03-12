@@ -12,7 +12,6 @@ import { Login } from '../pages/Login'
 import { AdminProducts } from '../pages/admin/AdminProducts'
 import { AdminOrders } from '../pages/admin/AdminOrders'
 import { CreateOrder } from '../pages/CreateOrder'
-import { ConfirmOrder } from '../pages/ConfirmOrder'
 import { Payment } from '../pages/Payment'
 import { Article } from '../pages/Article'
 import { AboutUs } from '../pages/AboutUs'
@@ -45,10 +44,6 @@ const routes = [
       {
         path: 'create_order',
         element: <CreateOrder />
-      },
-      {
-        path: 'confirm_order',
-        element: <ConfirmOrder />
       },
       {
         path: 'payment/:id',

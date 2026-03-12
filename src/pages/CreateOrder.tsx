@@ -18,7 +18,7 @@ export const CreateOrder = () => {
   const { showSuccess, showError } = useMessage()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<orderData>({ mode: 'onChange' })
-  const [_, setIsLoading] = useState<boolean>(true)
+  // const [_, setIsLoading] = useState<boolean>(true)
   const [waiting, setWaiting] = useState<boolean>(false)
   const [cartData, setCartData] = useState<CartData>({
     carts: [],
@@ -30,7 +30,7 @@ export const CreateOrder = () => {
     try {
       const response = await apiPublicGetCartData()
       setCartData(response.data.data)
-      setIsLoading(false)
+      // setIsLoading(false)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data?.message || '無法取得產品資料，請稍後再試'
@@ -58,7 +58,9 @@ export const CreateOrder = () => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line 
     getCartData()
+    // eslint-disable-next-line 
   }, [])
 
   return (<>
