@@ -8,7 +8,7 @@ export default function Layout() {
     <div className="d-flex flex-column min-vh-100">
       <ScrollToTop />
       <Header />
-      <main className="flex-grow-1">
+      <main className="flex-grow-1 pt-nav">
         <Outlet />
       </main>
       <Footer />

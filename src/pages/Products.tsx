@@ -72,7 +72,7 @@ export const Products = () => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  })
 
   return (
     <>
@@ -117,7 +117,7 @@ export const Products = () => {
                     :
                     filteredProducts.map(product => {
                       return (
-                        <div className="col-12 col-sm-6 col-md-4" key={product.id}>
+                        <div className="col-sm-6 col-md-4" key={product.id}>
                           <ProductCard product={product} />
                         </div>
                       )

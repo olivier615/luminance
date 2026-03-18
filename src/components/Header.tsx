@@ -11,10 +11,10 @@ export const Header = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getAsyncCarts())
-  }, [])
+  })
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light border-bottom">
+    <nav className="navbar navbar-expand-lg navbar-light border-bottom fixed-top bg-light">
       <div className="container">
         <NavLink className="navbar-brand text-dark fw-bold" to="/">
           Luminance

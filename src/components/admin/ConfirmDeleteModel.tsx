@@ -52,7 +52,7 @@ export const ConfirmDeleteModel = ({
         icon: 'success',
       })
       onDeleted()
-    } catch (error) {
+    } catch {
       await swalWithBootstrapButtons.fire({
         title: '刪除失敗',
         text: '請稍後再試',

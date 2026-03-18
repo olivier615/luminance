@@ -101,7 +101,7 @@ export const Cart = () => {
         </div>
         <>
           <div className="row">
-            <div className="col-lg-9 col-12">
+            <div className="col-lg-9">
               <table className="d-none d-md-table table align-middle text-center">
                 <thead>
                   <tr>
@@ -175,7 +175,7 @@ export const Cart = () => {
               }
 
             </div>
-            <div className="col-lg-3 col-12">
+            <div className="col-lg-3">
               {/* <CouponCard /> */}
               <TotalPriceCard />
               <button

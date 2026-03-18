@@ -95,7 +95,7 @@ export const AdminProducts = () => {
       productModalRef.current?.dispose()
       productModalRef.current = null
     }
-  }, [])
+  }, []) // eslint-disable-line
   return (
     <div className="container">
       <div className="row mt-5">

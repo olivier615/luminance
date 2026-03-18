@@ -54,9 +54,7 @@ export const FuzzyNight = () => {
     <div className="film-strip-wrapper">
       <div className="film-track">
         {combinedImages.map((image, index) => {
-          // 使用 % 運算子，讓第二組圖的呼吸節奏與第一組完全同步
           const stateIndex = index % originalImages.length
-
           return (
             <div className="film-item" key={index}>
               <img

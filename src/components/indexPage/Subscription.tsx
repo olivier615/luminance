@@ -3,7 +3,7 @@ export const Subscription = () => {
     <div className="sec_2_2 bg_img_fill mt-5">
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-6">
+          <div className="col-md-6">
             <div className="">
               <p className="text-primary fs-5 fw-bold">Illuminate Your Inbox</p>
               <p className="fw-bold fs-3 text-secondary">訂閱電子報</p>

@@ -18,7 +18,7 @@ export const StyleBook = () => {
           {
             collections.map(collection => {
               return (
-                <div className="col-12 col-md-6 col-lg-3 mb-4 grayscale_card" key={collection.id}>
+                <div className="col-md-6 col-lg-3 mb-4 grayscale_card" key={collection.id}>
                   <div className="card">
                     <img
                       src={collection.imgUrl}

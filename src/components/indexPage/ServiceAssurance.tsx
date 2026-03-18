@@ -10,7 +10,7 @@ export const ServiceAssurance = () => {
       <div className="container">
         <div className="row">
           {services.map((s, idx) => (
-            <div key={idx} className="col-12 mb-3 mb-md-0 col-md-4 d-flex align-items-center gap-3">
+            <div key={idx} className="mb-3 mb-md-0 col-md-4 d-flex align-items-center gap-3">
               <div className="">
                 <i className={`bi fs-3 text-primary ${s.icon}`}></i>
               </div>

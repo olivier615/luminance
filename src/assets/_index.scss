@@ -4,6 +4,24 @@
   background-position: center;
   padding: 140px 16px 60px 16px;
   border-radius: 20px;
+
+  @include media-breakpoint-up(sm) {
+    padding: 160px 20px 80px 20px;
+    border-radius: 24px;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding: 200px 24px 100px 24px;
+    border-radius: 28px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 260px 24px 120px 24px;
+  }
+  @include media-breakpoint-up(xl) {
+    padding: 300px 24px 140px 24px;
+    border-radius: 36px;
+  }
 }
 
 .index-view-big-font {
@@ -14,35 +32,11 @@
 }
 
 .p_align {
-  text-align:justify;
+  text-align: justify;
 }
 
-@media (min-width: 576px) {
-  .index-view-img {
-    padding: 160px 20px 80px 20px;
-    border-radius: 24px;
-  }
-}
-
-@media (min-width: 768px) {
-  .index-view-img {
-    padding: 200px 24px 100px 24px;
-    border-radius: 28px;
-  }
-}
-
-@media (min-width: 992px) {
-  .index-view-img {
-    padding: 260px 24px 120px 24px;
-    border-radius: 32px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .index-view-img {
-    padding: 300px 24px 140px 24px;
-    border-radius: 36px;
-  }
+.pt-nav {
+  padding-top: 57px;
 }
 
 .bg_img_fill {
@@ -73,7 +67,6 @@
 }
 
 .sec_2_img_3 {
-  // background-image: url('https://images.unsplash.com/photo-1699568861430-2c7bb074455d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
   background-image:
@@ -82,7 +75,6 @@
 }
 
 .sec_2_img_4 {
-  // background-image: url('https://images.unsplash.com/photo-1715756324249-0456e325831d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-color: #000000;
   background-size: cover;
   background-position: center;
@@ -97,11 +89,7 @@
   background-color: #000000;
   background-size: cover;
   background-position: center;
-
-  /* 讓圖片變黑白，但不會影響子元素標籤 */
   background-blend-mode: luminosity;
-
-  /* 補強：用透明黑色的線性漸層來達到亮度 0.8 的效果 */
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)),
     url('https://images.unsplash.com/photo-1730724620660-f50b1b527dad?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -111,17 +99,11 @@
   background-color: #000000;
   background-size: cover;
   background-position: center;
-
   background-blend-mode: luminosity;
-
   background-image:
-    // linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)),
     url('https://images.unsplash.com/photo-1641734609301-049ac78ad47d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-  // url('https://images.unsplash.com/photo-1675972486643-18758f47bbf6?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 }
 
-
-// ------------------------
 .banner_bg {
   background-image: url('https://images.unsplash.com/photo-1614447912314-e2976f03f61a?q=80&w=1470&auto=format&fit=crop');
   background-size: cover;
@@ -137,6 +119,19 @@
 
 .mt_title_card {
   margin-top: 40px;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 40px;
+  }
+  @include media-breakpoint-up(md) {
+    margin-top: 120px;
+  }
+  @include media-breakpoint-up(lg) {
+    margin-top: 160px;
+  }
+  @include media-breakpoint-up(xl) {
+    margin-top: 200px;
+  }
 }
 
 .grayscale {
@@ -151,75 +146,26 @@
 
 .banner_view {
   height: 80vh;
-}
-
-
-@media (min-width : 576px) {
-  .index-view-img {
-    padding: 160px 20px 80px 20px;
-    border-radius: 24px;
-  }
-
-  .mt_title_card {
-    margin-top: 40px;
+  @include media-breakpoint-up(lg) {
+    height: 90vh;
   }
 }
 
-@media (min-width: 768px) {
-  .index-view-img {
-    padding: 200px 24px 100px 24px;
-    border-radius: 28px;
-  }
-
-  .mt_title_card {
-    margin-top: 120px;
-  }
-}
-
-@media (min-width: 992px) {
-  .index-view-img {
-    padding: 260px 24px 120px 24px;
-    border-radius: 32px;
-  }
-
-  .mt_title_card {
-    margin-top: 160px;
-  }
-
-  .banner_view {
-  height: 90vh;
-}
-}
-
-@media (min-width: 1200px) {
-  .index-view-img {
-    padding: 300px 24px 140px 24px;
-    border-radius: 36px;
-  }
-
-  .mt_title_card {
-    margin-top: 200px;
-  }
-}
-
-/* Swiper Container 外部間距 */
 .product-swiper {
   padding-bottom: 40px;
 }
 
-/* 商品圖片容器 */
 .img-container {
   width: 100%;
   aspect-ratio: 1 / 1;
-  /* 強制 1:1 */
   overflow: hidden;
 }
 
 .cart-img-container {
   width: 90px;
   aspect-ratio: 1 / 1;
-  /* 強制 1:1 */
   overflow: hidden;
+
   img {
     width: 100%;
     height: 100%;
@@ -232,7 +178,6 @@
   height: 100%;
   object-fit: cover;
 }
-
 
 .MoodBox {
   height: 300px;

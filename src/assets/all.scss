@@ -1,9 +1,13 @@
 @import 'bootstrap/scss/functions';
 @import './variables';
-@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/mixins';
 
 @import './sweetAlterStyle.scss';
-@import './index.scss';
 @import './custom.scss';
 @import './blur_card.scss';
-@import './fuzzyImages.scss';
+
+
+@import 'index';
+@import 'fuzzyImages.scss';
+
+@import 'bootstrap/scss/bootstrap';

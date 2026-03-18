@@ -25,13 +25,13 @@ export const Article = () => {
             <span className="align-self-end mt-1 mt-sm-0">{collection.subTitle}</span>
           </div>
 
-          <div className="col-12 col-md-6 order-2 order-md-1">
+          <div className="col-md-6 order-2 order-md-1">
             <div className="">
               <p className="lh-lg p_align px-29">{collection.article}</p>
             </div>
 
           </div>
-          <div className="col-12 order-1 order-md-2 col-md-6 mb-3 mb-md-0">
+          <div className="order-1 order-md-2 col-md-6 mb-3 mb-md-0">
             <div className="img-container">
               <img
                 className="rounded-3"

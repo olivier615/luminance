@@ -79,7 +79,7 @@ export const Product = () => {
 
   useEffect(() => {
     getProduct(id as string)
-  }, [])
+  })
 
   return (
     <>

@@ -31,7 +31,6 @@ export const AdminOrders = () => {
   const getOrders = async (page = '1') => {
     try {
       const response = await apiAdminGetOrders({ page })
-      console.log(response.data)
       setOrders([...response.data.orders])
       setPagination({ ...response.data.pagination })
       setIsLoading(false)
@@ -67,6 +66,7 @@ export const AdminOrders = () => {
 
   useEffect(() => {
     getOrders()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -160,7 +160,6 @@ export const AdminOrders = () => {
                                         <p className="mb-0 fw-bold">{order.product.title}</p>
                                         <p className="mb-0">{`${order.product.price} / ${order.qty} ${order.product.unit}`}</p>
                                       </div>
-
                                     </div>
                                     <div className="align-self-center">
                                       <p className="mb-0 fw-bold">

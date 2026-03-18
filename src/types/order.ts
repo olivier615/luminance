@@ -16,7 +16,7 @@ export type TOrder = {
   id: string
   is_paid: boolean
   message: string
-  products: {}
+  products: {} // eslint-disable-line
   total: number
   user: {
     name: string

@@ -70,7 +70,7 @@ export const CreateOrder = () => {
         <p className="fw-bold text-dark fs-3 mb-5">建立訂單</p>
       </div>
       <div className="row">
-        <div className="col-12 col-md-6">
+        <div className="col-md-6">
           <p className="fw-bold text-dark fs-5 text-center mb-3">收件人資料</p>
           <form
             id="form"
@@ -161,7 +161,7 @@ export const CreateOrder = () => {
             </button>
           </form>
         </div>
-        <div className="col-12 offset-0 offset-lg-1 col-md-6 col-lg-5 mt-5 mt-md-0">
+        <div className="offset-0 offset-lg-1 col-md-6 col-lg-5 mt-5 mt-md-0">
           {/* <CouponCard /> */}
           <TotalPriceCard />
           <p className="fw-bold text-dark fs-5 text-center my-3">訂單內容</p>

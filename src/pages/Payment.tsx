@@ -72,7 +72,7 @@ export const Payment = () => {
 
   useEffect(() => {
     getOrder()
-  }, [])
+  })
 
   return (
     <>
@@ -148,7 +148,7 @@ export const Payment = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 offset-0 offset-lg-1 col-md-6 col-lg-5 mt-5 mt-md-0">
+          <div className="offset-0 offset-lg-1 col-md-6 col-lg-5 mt-5 mt-md-0">
             <div className="card mb-3">
               <div className="card-body">
                 <p className="card-title text-dark fs-5 fw-bold">
