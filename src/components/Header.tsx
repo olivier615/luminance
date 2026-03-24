@@ -11,7 +11,8 @@ export const Header = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getAsyncCarts())
-  })
+    // eslint-disable-next-line 
+  }, [])
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light border-bottom fixed-top bg-light">

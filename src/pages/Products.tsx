@@ -72,7 +72,8 @@ export const Products = () => {
 
   useEffect(() => {
     getProducts()
-  })
+    // eslint-disable-next-line 
+  }, [])
 
   return (
     <>
