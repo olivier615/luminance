@@ -22,7 +22,6 @@ export const AdminHeader = () => {
               <NavLink
                 to="/admin"
                 end
-                // 父路由 NavLink 加 end
                 className={({ isActive }) =>
                   `nav-link ${isActive ? "text-primary" : ""}`
                 }
@@ -30,16 +29,6 @@ export const AdminHeader = () => {
                 產品列表
               </NavLink>
             </li>
-            {/* <li className="nav-item">
-              <NavLink
-                to="/admin/coupons"
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "text-primary" : ""}`
-                }
-              >
-                折價券列表
-              </NavLink>
-            </li> */}
             <li className="nav-item">
               <NavLink
                 to="/admin/orders"

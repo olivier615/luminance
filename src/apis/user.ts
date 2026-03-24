@@ -2,7 +2,6 @@ import axios, { type AxiosResponse } from "axios";
 import type { UserLogInFormData, UserLogInResponse, MessageResponse } from "../types/user";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
-// const API_PATH = import.meta.env.VITE_API_PATH;
 
 const userApi = axios.create({
   baseURL: API_BASE,

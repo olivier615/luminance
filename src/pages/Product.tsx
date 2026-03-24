@@ -79,7 +79,8 @@ export const Product = () => {
 
   useEffect(() => {
     getProduct(id as string)
-  })
+    // eslint-disable-next-line 
+  }, [id])
 
   return (
     <>

@@ -6,7 +6,6 @@
 
 body {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  // background-color: #e1e1e2;
   background-color: #F5F5F3;
   color: #2B2B2B;
 }
@@ -42,11 +41,6 @@ h1, h2, h3, h4, h5 {
 }
 
 :root {
-  /* 修改導覽箭頭顏色與大小 */
-  // --swiper-navigation-color: #1e293b; /* 深色 */
-  // --swiper-navigation-size: 24px;    /* 縮小箭頭 */
-
-  /* 修改分頁小圓點顏色 */
   --swiper-pagination-color: #5FB8AD;
   --swiper-pagination-bullet-inactive-color: #CFE8E5;
   --swiper-pagination-bullet-inactive-opacity: 0.5;

@@ -39,8 +39,8 @@ export const messageSlice = createSlice({
 })
 
 export const createAsyncMessage = createAsyncThunk<
-  void,                     // 回傳值型別
-  CreateMessagePayload      // payload 型別
+  void,
+  CreateMessagePayload
 >(
   'message/createAsyncMessage',
   async (payload, { dispatch, requestId }) => {

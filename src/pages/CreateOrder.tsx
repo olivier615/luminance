@@ -6,7 +6,6 @@ import { useMessage } from "../hooks/useMessage"
 import type { CartData } from "../types/cart"
 import { apiPublicPostOrder } from '../apis/order'
 import { apiPublicGetCartData } from "../apis/cart"
-// import { CouponCard } from '../components/CouponCard'
 import { TotalPriceCard } from '../components/TotalPriceCard'
 import type { orderData } from '../types/order'
 import { MiniCartTable } from '../components/MiniCartTable'
@@ -18,7 +17,6 @@ export const CreateOrder = () => {
   const { showSuccess, showError } = useMessage()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<orderData>({ mode: 'onChange' })
-  // const [_, setIsLoading] = useState<boolean>(true)
   const [waiting, setWaiting] = useState<boolean>(false)
   const [cartData, setCartData] = useState<CartData>({
     carts: [],

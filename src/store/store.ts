@@ -6,9 +6,6 @@ export const store = configureStore({
   reducer: {
     message: messageReducer,
     cart: cartReducer
-    // user: userReducer
-    // product: productReducer
-    // ...
   }
 })
 

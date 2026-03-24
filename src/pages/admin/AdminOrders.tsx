@@ -6,9 +6,6 @@ import { apiAdminGetOrders } from '../../apis/order'
 import { PaginationList } from '../../components/PaginationList'
 import { BorderSpinner } from '../../components/Spinner'
 import { ConfirmDeleteOrder } from '../../components/admin/ConfirmDeleteOrder'
-// import { CouponCard } from '../../components/CouponCard'
-// import { TotalPriceCard } from '../../components/TotalPriceCard'
-// import { MiniCartTable } from '../../components/MiniCartTable'
 import type {
   TPagination,
 } from "../../types/product"
@@ -16,6 +13,7 @@ import type { TOrder, TOrderInfo } from '../../types/order'
 
 export const AdminOrders = () => {
   const { showError } = useMessage()
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null)
   const [orders, setOrders] = useState<TOrder[]>([])
   const [orderInfo, setOrderInfo] = useState<TOrderInfo[]>()
   const [pagination, setPagination] = useState<TPagination>({
@@ -26,7 +24,6 @@ export const AdminOrders = () => {
     category: ''
   })
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  // const [waiting, setWaiting] = useState<boolean>(false)
 
   const getOrders = async (page = '1') => {
     try {
@@ -52,6 +49,7 @@ export const AdminOrders = () => {
   const getOrderData = (order: TOrder) => {
     const list: TOrderInfo[] = Object.values(order.products)
     setOrderInfo([...list])
+    setActiveOrderId(order.id)
   }
 
   const onChangePage = (page: number) => {
@@ -114,7 +112,9 @@ export const AdminOrders = () => {
                                   <div className="btn-group">
                                     <button
                                       type="button"
-                                      className="btn btn-sm btn-outline-primary"
+                                      className={`btn btn-sm btn-outline-primary ${
+                                        activeOrderId === order.id ? 'bg-primary text-light' : ''
+                                      }`}
                                       onClick={() => getOrderData(order)}
                                     >
                                       訂單內容
@@ -139,8 +139,6 @@ export const AdminOrders = () => {
                     </div>
                   </div>
                   <div className="col-4">
-                    {/* <CouponCard /> */}
-                    {/* <TotalPriceCard /> */}
                     <p className="fw-bold text-dark fs-5 text-center my-3">訂單內容</p>
                     <div className="mt-3 md-mt-0 border border-secondary rounded-3 bg-light">
                       {

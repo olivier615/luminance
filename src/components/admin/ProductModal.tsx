@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react"
+import axios from "axios"
 import type {
   ProductData,
   CreateProductParams,
   InstallationType
-} from "../../types/product";
+} from "../../types/product"
 
 import {
   apiCreateProduct,
   apiEditProduct
-} from "../../apis/product";
+} from "../../apis/product"
 
-import { useMessage } from "../../hooks/useMessage";
-import { handleResponse } from '../../utils/responseMessage';
-import { ImageInput } from './ImageInput';
-import { ImageCard } from './ImageCard';
+import { useMessage } from "../../hooks/useMessage"
+import { handleResponse } from '../../utils/responseMessage'
+import { ImageInput } from './ImageInput'
+import { ImageCard } from './ImageCard'
 
 const installationOptions: {
   label: string,
@@ -23,7 +23,7 @@ const installationOptions: {
   { label: '無', value: 'none' },
   { label: '需議價', value: 'negotiable' },
   { label: '免費安裝', value: 'free' },
-];
+]
 
 const initialEditProduct: CreateProductParams = {
   title: '',
@@ -37,131 +37,132 @@ const initialEditProduct: CreateProductParams = {
   imageUrl: '',
   imagesUrl: [],
   installation: 'none'
-};
+}
 
 type ProductModalProps = {
   closeModal: () => void,
   productEditState: 'new' | 'edit',
   tempProduct: ProductData | null,
   onEdited: () => void
-};
+}
 
 export const ProductModal = ({ closeModal, productEditState, tempProduct, onEdited }: ProductModalProps) => {
-  const { showSuccess, showError } = useMessage();
-  const [imageUrlInput, setImageUrlInput] = useState<string>('');
-  const [editProduct, setEditProduct] = useState<CreateProductParams>(initialEditProduct);
+  const { showSuccess, showError } = useMessage()
+  const [imageUrlInput, setImageUrlInput] = useState<string>('')
+  const [editProduct, setEditProduct] = useState<CreateProductParams>(initialEditProduct)
 
   const handleModalInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = event.target;
+    const { id, value } = event.target
     setEditProduct((prevData) => ({
       ...prevData,
       [id]: id === 'origin_price' || id === 'price' ? Number(value) : value
-    }));
-  };
+    }))
+  }
 
   const handleIsEnabled = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEditProduct((prev) => ({
       ...prev,
       is_enabled: event.target.checked ? 1 : 0
-    }));
-  };
+    }))
+  }
 
   const handleInstallation = (value: InstallationType) => {
     setEditProduct((prev) => ({
       ...prev,
       installation: value
-    }));
-  };
+    }))
+  }
 
   const isURL = (url: string): boolean => {
-    const httpsOnlyRegex = /^https:\/\//i;
-    return httpsOnlyRegex.test(url);
-  };
+    const httpsOnlyRegex = /^https:\/\//i
+    return httpsOnlyRegex.test(url)
+  }
 
   const addNewUrl = () => {
-    if (imageUrlInput === '') return;
+    if (imageUrlInput === '') return
     if (!isURL(imageUrlInput)) {
-      handleResponse('錯誤的 Url', 'warning');
+      handleResponse('錯誤的 Url', 'warning')
     } else {
       setEditProduct((prev) => ({
         ...prev,
         imagesUrl: [...prev.imagesUrl, imageUrlInput],
         imageUrl: prev.imageUrl === '' ? imageUrlInput : prev.imageUrl
-      }));
-      setImageUrlInput('');
+      }))
+      setImageUrlInput('')
     }
-  };
+  }
 
   const deleteUrl = (index: number) => {
     setEditProduct((prevData) => {
-      const newImagesUrl = prevData.imagesUrl.filter((_, i) => i !== index);
+      const newImagesUrl = prevData.imagesUrl.filter((_, i) => i !== index)
       return {
         ...prevData,
         imagesUrl: newImagesUrl,
         imageUrl: prevData.imagesUrl[index] === prevData.imageUrl 
           ? (newImagesUrl.length > 0 ? newImagesUrl[0] : '') 
           : prevData.imageUrl,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const setMainImage = (index: number) => {
     setEditProduct((prev) => ({
       ...prev,
       imageUrl: prev.imagesUrl[index]
-    }));
-  };
+    }))
+  }
 
   const onUploaded = (url: string) => {
-    setImageUrlInput(url);
+    setImageUrlInput(url)
     setEditProduct(prev => ({
       ...prev,
       imageUrl: prev.imageUrl === '' ? url : prev.imageUrl
-    }));
-  };
+    }))
+  }
 
   const handelAddNewProduct = async () => {
     try {
-      const response = await apiCreateProduct(editProduct);
-      setEditProduct(initialEditProduct);
-      showSuccess(response.data.message);
-      closeModal();
-      onEdited();
+      const response = await apiCreateProduct(editProduct)
+      setEditProduct(initialEditProduct)
+      showSuccess(response.data.message)
+      closeModal()
+      onEdited()
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        showError(error.response?.data?.message || '新增產品失敗');
+        showError(error.response?.data?.message || '新增產品失敗')
       } else {
-        showError('發生未知錯誤');
+        showError('發生未知錯誤')
       }
     }
-  };
+  }
+
 
   const handleEditProduct = async () => {
-    if (!tempProduct?.id) return;
+    if (!tempProduct?.id) return
     try {
       const response = await apiEditProduct({
         id: tempProduct.id,
         data: editProduct
-      });
-      showSuccess(response.data.message);
-      closeModal();
-      onEdited();
+      })
+      showSuccess(response.data.message)
+      closeModal()
+      onEdited()
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        showError(error.response?.data?.message || '編輯產品失敗');
+        showError(error.response?.data?.message || '編輯產品失敗')
       } else {
-        showError('發生未知錯誤');
+        showError('發生未知錯誤')
       }
     }
-  };
+  }
 
   const handelModalSubmit = () => {
     if (productEditState === 'new') {
-      handelAddNewProduct();
+      handelAddNewProduct()
     } else {
-      handleEditProduct();
+      handleEditProduct()
     }
-  };
+  }
 
   useEffect(() => {
     if (productEditState === 'edit' && tempProduct) {
@@ -177,34 +178,34 @@ export const ProductModal = ({ closeModal, productEditState, tempProduct, onEdit
         imageUrl: tempProduct.imageUrl,
         imagesUrl: tempProduct.imagesUrl ?? [],
         installation: tempProduct.installation
-      });
+      })
     } else {
-      setEditProduct(initialEditProduct);
+      setEditProduct(initialEditProduct)
     }
-  }, [productEditState, tempProduct]);
+  }, [productEditState, tempProduct])
 
   useEffect(() => {
-  const modal = document.getElementById('productModal');
+  const modal = document.getElementById('productModal')
 
   const handler = () => {
-    setEditProduct(initialEditProduct);
-    setImageUrlInput('');
-  };
+    setEditProduct(initialEditProduct)
+    setImageUrlInput('')
+  }
 
-  modal?.addEventListener('hidden.bs.modal', handler);
+  modal?.addEventListener('hidden.bs.modal', handler)
 
   return () => {
-    modal?.removeEventListener('hidden.bs.modal', handler);
-  };
-}, []);
+    modal?.removeEventListener('hidden.bs.modal', handler)
+  }
+}, [])
 
 useEffect(() => {
-  const modal = document.getElementById('productModal');
+  const modal = document.getElementById('productModal')
 
   const handleHidden = () => {
-    setEditProduct(initialEditProduct);
-    setImageUrlInput('');
-  };
+    setEditProduct(initialEditProduct)
+    setImageUrlInput('')
+  }
 
   const handleShow = () => {
     if (productEditState === 'edit' && tempProduct) {
@@ -220,20 +221,20 @@ useEffect(() => {
         imageUrl: tempProduct.imageUrl,
         imagesUrl: tempProduct.imagesUrl ?? [],
         installation: tempProduct.installation
-      });
+      })
     } else {
-      setEditProduct(initialEditProduct);
+      setEditProduct(initialEditProduct)
     }
-  };
+  }
 
-  modal?.addEventListener('hidden.bs.modal', handleHidden);
-  modal?.addEventListener('show.bs.modal', handleShow);
+  modal?.addEventListener('hidden.bs.modal', handleHidden)
+  modal?.addEventListener('show.bs.modal', handleShow)
 
   return () => {
-    modal?.removeEventListener('hidden.bs.modal', handleHidden);
-    modal?.removeEventListener('show.bs.modal', handleShow);
-  };
-}, [productEditState, tempProduct]);
+    modal?.removeEventListener('hidden.bs.modal', handleHidden)
+    modal?.removeEventListener('show.bs.modal', handleShow)
+  }
+}, [productEditState, tempProduct])
 
 
   return (
@@ -349,5 +350,5 @@ useEffect(() => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

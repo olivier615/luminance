@@ -11,21 +11,16 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 export const FuzzyNight = () => {
-  // 1. 準備原始隨機陣列
   const originalImages = useMemo(() => {
     return shuffleArray(fuzzyImages);
   }, []);
 
-  // 2. 為了無縫捲動，渲染兩組一樣的內容
   const combinedImages = [...originalImages, ...originalImages]
-
-  // 3. 呼吸感狀態：只需追蹤原始長度的狀態，兩組圖共用同一個狀態以達同步
   const [isGrayList, setIsGrayList] = useState<boolean[]>(
     new Array(originalImages.length).fill(true)
   )
 
   useEffect(() => {
-    // 使用 ReturnType 確保跨環境相容性
     const timers: ReturnType<typeof setTimeout>[] = []
 
     originalImages.forEach((_, index) => {
@@ -38,7 +33,7 @@ export const FuzzyNight = () => {
             next[index] = !next[index]
             return next
           })
-          toggle() // 遞迴呼叫
+          toggle()
         }, delay)
 
         timers.push(timer)
@@ -46,7 +41,6 @@ export const FuzzyNight = () => {
       toggle()
     })
 
-    // 清除所有定時器，避免組件卸載後的內存洩漏
     return () => timers.forEach(timer => clearTimeout(timer))
   }, [originalImages])
 
